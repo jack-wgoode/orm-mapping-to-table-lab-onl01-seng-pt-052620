@@ -21,25 +21,23 @@ class Student
   end
   
   def self.drop_table 
-    sql =  <<-SQL 
-      DROP TABLE IF EXISTS students 
-    SQL
-    DB[:conn].execute(sql) 
-  end
+   sql = <<-SQL 
+   DROP TABLE IF EXISTS students
+   SQL
+   DB[:conn].execute(sql)
+   end
   
   def save
     sql = <<-SQL
      INSERT INTO students (name, grade)
-     VALUES (?,?)
+     VALUES(?,?)
     SQL
     DB[:conn].execute(sql, self.name, self.grade)
-    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+    @id = DB[:conn].execute("SELECT   FROM students")
   end
   
   def self.create(student_hash)
-    student = Student.new(student_hash[:name], student_hash[:grade])
-    student.save
-    student
+    
   end
     
 
